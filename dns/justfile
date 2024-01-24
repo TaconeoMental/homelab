@@ -55,7 +55,6 @@ delete: stop
   -rm {{VOLS}}/bind/etc/named.conf.zones
   -rm -rf {{VOLS}}/pihole/etc/dnsmasq.d/*
   -rm -rf {{VOLS}}/pihole/etc/pihole/*
-  -rm {{HERE}}/.env
 
 # Delete Docker image and container
 purge: && delete
