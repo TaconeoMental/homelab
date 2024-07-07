@@ -1,0 +1,3 @@
+user:userlist=config/user_config.txt
+apps:apps=@config/install-list.txt|remove=@config/uninstall-list.txt
+disables:piwiz

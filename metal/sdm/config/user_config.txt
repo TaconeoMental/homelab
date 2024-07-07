@@ -1,0 +1,3 @@
+deluser=pi
+adduser=neo|password=ChangeMe
+setpassword=root|password=ChangeMe

@@ -1,0 +1,166 @@
+##### Language/Regional options #####
+AUTO_SETUP_LOCALE=C.UTF-8
+AUTO_SETUP_KEYBOARD_LAYOUT=es
+AUTO_SETUP_TIMEZONE=America/Santiago
+
+##### Network options #####
+AUTO_SETUP_BOOT_WAIT_FOR_NETWORK=1
+AUTO_SETUP_NET_ETHERNET_ENABLED=1
+AUTO_SETUP_NET_WIFI_ENABLED=0
+AUTO_SETUP_DHCP_TO_STATIC=0
+
+# automatic speed
+AUTO_SETUP_NET_ETH_FORCE_SPEED=0
+
+# Static network details 
+AUTO_SETUP_NET_USESTATIC=1
+AUTO_SETUP_NET_STATIC_IP=$CONFIG_STATIC_IP
+AUTO_SETUP_NET_STATIC_MASK=$CONFIG_STATIC_MASK
+AUTO_SETUP_NET_STATIC_GATEWAY=$CONFIG_STATIC_GATEWAY
+AUTO_SETUP_NET_STATIC_DNS=$CONFIG_STATIC_DNS
+
+# Hostname
+AUTO_SETUP_NET_HOSTNAME=$CONFIG_HOSTNAME
+
+##### Misc options #####
+# auto
+AUTO_SETUP_SWAPFILE_SIZE=1
+AUTO_SETUP_SWAPFILE_LOCATION=/var/swap
+
+# disable HDMI/video output
+AUTO_SETUP_HEADLESS=1
+
+# enable systemd-logind servicde
+AUTO_UNMASK_LOGIND=0
+
+# Custom Script (pre-networking and pre-DietPi install)
+# - Allows you to automatically execute a custom script before network is up on first boot.
+# - Copy your script to /boot/Automation_Custom_PreScript.sh and it will be executed automatically.
+# - Executed script log: /var/tmp/dietpi/logs/dietpi-automation_custom_prescript.log
+
+# Custom Script (post-networking and post-DietPi install)
+# - Allows you to automatically execute a custom script at the end of DietPi install.
+# - Option 0 = Copy your script to /boot/Automation_Custom_Script.sh and it will be executed automatically.
+# - Option 1 = Host your script online, then use e.g. AUTO_SETUP_CUSTOM_SCRIPT_EXEC=https://myweb.com/myscript.sh and it will be downloaded and executed automatically.
+# - Executed script log: /var/tmp/dietpi/logs/dietpi-automation_custom_script.log
+# REVISAR
+AUTO_SETUP_CUSTOM_SCRIPT_EXEC=0
+
+# disable
+AUTO_SETUP_BACKUP_RESTORE=0
+
+##### Software options #####
+# OpenSSH
+AUTO_SETUP_SSH_SERVER_INDEX=-2
+# for root & dietpi
+AUTO_SETUP_SSH_PUBKEY=$CONFIG_SSH_KEY
+
+# RAMlog hourly clear
+AUTO_SETUP_LOGGING_INDEX=-1
+# MiB
+AUTO_SETUP_RAMLOG_MAXSIZE=200
+
+# Dependency preferences
+# nginx
+AUTO_SETUP_WEB_SERVER_INDEX=-1
+# xfce
+AUTO_SETUP_DESKTOP_INDEX=1
+# None
+AUTO_SETUP_BROWSER_INDEX=0
+
+# Console
+AUTO_SETUP_AUTOSTART_TARGET_INDEX=0
+AUTO_SETUP_AUTOSTART_LOGIN_USER=root
+
+##### Non-interactive first run setup #####
+AUTO_SETUP_AUTOMATED=1
+
+# for root & dietpi & default4software
+AUTO_SETUP_GLOBAL_PASSWORD=madoka
+
+# Software to automatically install
+# OpenSSH Client
+AUTO_SETUP_INSTALL_SOFTWARE_ID=0
+# Git
+AUTO_SETUP_INSTALL_SOFTWARE_ID=17
+# Vim
+AUTO_SETUP_INSTALL_SOFTWARE_ID=20
+# Docker Compose
+AUTO_SETUP_INSTALL_SOFTWARE_ID=134
+# Docker
+AUTO_SETUP_INSTALL_SOFTWARE_ID=162
+
+#------------------------------------------------------------------------------------------------------
+##### Misc DietPi program settings #####
+#------------------------------------------------------------------------------------------------------
+# opt out
+SURVEY_OPTED_IN=0
+
+#------------------------------------------------------------------------------------------------------
+##### DietPi-Config settings #####
+#------------------------------------------------------------------------------------------------------
+CONFIG_CPU_GOVERNOR=schedutil
+CONFIG_CPU_ONDEMAND_SAMPLE_RATE=25000
+CONFIG_CPU_ONDEMAND_SAMPLE_DOWNFACTOR=40
+CONFIG_CPU_USAGE_THROTTLE_UP=50
+CONFIG_CPU_MAX_FREQ=Disabled
+CONFIG_CPU_MIN_FREQ=Disabled
+
+CONFIG_CPU_DISABLE_TURBO=0
+
+CONFIG_GPU_DRIVER=none
+
+# System-wide proxy settings
+CONFIG_PROXY_ADDRESS=MyProxyServer.com
+CONFIG_PROXY_PORT=8080
+CONFIG_PROXY_USERNAME=
+CONFIG_PROXY_PASSWORD=
+
+CONFIG_G_CHECK_URL_TIMEOUT=10
+CONFIG_G_CHECK_URL_ATTEMPTS=2
+CONFIG_CHECK_CONNECTION_IP=9.9.9.9
+CONFIG_CHECK_CONNECTION_IPV6=2620:fe::fe
+CONFIG_CHECK_DNS_DOMAIN=dns9.quad9.net
+
+CONFIG_CHECK_DIETPI_UPDATES=1
+# check only
+CONFIG_CHECK_APT_UPDATES=1
+
+# boot + daily
+CONFIG_NTP_MODE=2
+
+CONFIG_SERIAL_CONSOLE_ENABLE=0
+CONFIG_SOUNDCARD=none
+CONFIG_LCDPANEL=none
+CONFIG_ENABLE_IPV6=0
+
+CONFIG_APT_RASPBIAN_MIRROR=http://raspbian.raspberrypi.com/raspbian
+CONFIG_APT_DEBIAN_MIRROR=https://deb.debian.org/debian
+
+CONFIG_NTP_MIRROR=default
+
+#------------------------------------------------------------------------------------------------------
+##### DietPi-Software settings #####
+#------------------------------------------------------------------------------------------------------
+SOFTWARE_DISABLE_SSH_PASSWORD_LOGINS=1
+
+# VNC Server
+SOFTWARE_VNCSERVER_WIDTH=1280
+SOFTWARE_VNCSERVER_HEIGHT=720
+SOFTWARE_VNCSERVER_DEPTH=16
+SOFTWARE_VNCSERVER_DISPLAY_INDEX=1
+SOFTWARE_VNCSERVER_SHARE_DESKTOP=0
+
+# X.org
+# - DPI 96(default) 120(+25%) 144(+50%) 168(+75%) 192(+100%)
+SOFTWARE_XORG_DPI=96
+
+#------------------------------------------------------------------------------------------------------
+##### Dev settings #####
+#------------------------------------------------------------------------------------------------------
+DEV_GITBRANCH=master
+DEV_GITOWNER=MichaIng
+
+#------------------------------------------------------------------------------------------------------
+##### Settings, automatically added by dietpi-update #####
+#------------------------------------------------------------------------------------------------------

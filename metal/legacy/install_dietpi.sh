@@ -22,6 +22,7 @@ OPTARGS:
 ARGS:
     -d, --device <device path>
     -H, --hostname <hostname>
+    -k, --key <SSH public key>
     --static-cidr <CIDR>
     --static-gateway <IPv4 address>
     --static-dns <IPv4 address>
@@ -36,6 +37,8 @@ do
         DEVICE="$2"; shift ;;
     -H|--hostname)
         RPI_HOSTNAME="$2"; shift ;;
+    -k|--key)
+        SSH_PUBLIC_KEY=$(readlink -f "$2"); shift ;;
     --static-cidr)
         STATIC_CIDR="$2"; shift ;;
     --static-gateway)
@@ -52,16 +55,16 @@ done
 
 case "" in
     "$DEVICE"|"$RPI_HOSTNAME"|\
-    "$STATIC_CIDR"|"$STATIC_GATEWAY"|"$STATIC_DNS")
+    "$STATIC_DNS"|"$STATIC_CIDR"|"$STATIC_GATEWAY")
         usage ;;
 esac
 
 download_latest_image() {
     OS_IMAGE=$(mktemp /tmp/dietpi_rpi.XXXXXX)
-    trap "echo '[*] Deleting image'; rm -f $OS_IMAGE" 0 2 3 15
+    trap "echo '[*] Deleting image'; rm -f $OS_IMAGE" EXIT INT QUIT TERM
 
     echo "[*] Downloading OS image from $DIETPI_IMAGE_URL"
-    wget -q $DIETPI_IMAGE_URL -O $OS_IMAGE
+    wget $DIETPI_IMAGE_URL -q --show-progress -O $OS_IMAGE
     echo $(wget $DIETPI_CHKSUM_URL -O- -o /dev/null | cut -f1 -d' ') $OS_IMAGE | sha256sum --check --status
 
     exit_status=$?
@@ -87,6 +90,7 @@ setup_env_vars() {
     export CONFIG_STATIC_GATEWAY="$STATIC_GATEWAY"
     export CONFIG_STATIC_DNS="$STATIC_DNS"
     export CONFIG_HOSTNAME="$RPI_HOSTNAME"
+    export CONFIG_SSH_KEY=$(cat $SSH_PUBLIC_KEY)
 }
 
 copy_config_file() {

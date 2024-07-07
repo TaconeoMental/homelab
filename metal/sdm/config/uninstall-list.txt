@@ -1,0 +1,7 @@
+# Unofficial Docker packages
+docker.io
+docker-compose
+docker-doc
+podman-docker
+# unnecesary...
+rpicam-apps-lite
