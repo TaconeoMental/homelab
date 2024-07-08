@@ -125,9 +125,12 @@ then
     chmod 600 $ssh_dir/authorized_keys
     chown -R $user:$user $ssh_dir
 
-    sshd_config_file=$SDMPT/etc/ssh/sshd_config.d/00-sdm-def.conf
+    sshd_config_file=$SDMPT/etc/ssh/sshd_config.d/sdm-ssh-plugin.conf
     cp --verbose $assetdir/ssh-sshd_config $sshd_config_file
     logtoboth "[+] Added new sshd config file => $sshd_config_file"
+
+    logtoboth '[*] Removing rename_user.conf file'
+    rm --force --verbose $SDMPT/etc/ssh/sshd_config.d/rename_user.conf
 
     logfreespace "at end of $pfx Phase 1"
     logtoboth "* Plugin $pfx: Complete Phase 1"
