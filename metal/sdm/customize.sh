@@ -4,6 +4,24 @@ if [ $UID -ne 0 ]; then
     exec sudo -- "$0" "$@"
 fi
 
+
+echo_die() {
+    if (( $# == 0 )) ; then
+        cat /dev/stdin
+    else
+        echo "$1"
+    fi
+    exit 1
+}
+
+check_file_or_die() {
+    local filepath="$1"
+    if [ ! -f "$filepath" ];
+    then
+        echo_die "[-] $filepath is not a valid file"
+    fi
+}
+
 # Real script path
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
@@ -40,6 +58,8 @@ case "" in
     "$INPUT_IMAGE"|"$SSH_KEY")
         usage ;;
 esac
+check_file_or_die "$INPUT_IMAGE"
+check_file_or_die "$SSH_KEY"
 
 # Copy image if --output is set. I need to do this because SDM's --customize
 # flag overwrites the original image.
@@ -74,6 +94,7 @@ sdm \
     --extend \
     --xmb 4096 \
     --batch \
+    --plugin-debug \
     --plugin @$DIR/config/plugins.txt \
     --plugin apt-addrepo:"repo=$docker_repo|gpgkey=$docker_gpg_key|gpgkeyname=docker" \
     --plugin $DIR/custom_plugins/ssh:"user=neo|$SSH_PLUGIN_ARG" \
